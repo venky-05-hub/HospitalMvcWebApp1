@@ -1,0 +1,95 @@
+﻿@model List<Hospitalregistration>
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-headers bg-secondary bg-gradient mt-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">Category List</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card-body p-4">
+    <div class="row pb-3">
+        <div class="col-6">
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="HospitalRegister" asp-action="Create" class="btn btn-primary">
+
+                <i class="bi bi-plus-lg"></i> Create New category
+            </a>
+        </div>
+
+    </div>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    HospitalType
+                </th>
+                <th>
+                    PrimaryContactName
+                </th>
+                <th>
+                    PrimaryContactNumber
+                </th>
+                <th>
+                    AlternateContactNumber
+                </th>
+                <th>
+                    AlternateContactName
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Address
+                </th>
+                <th>
+                    State
+                </th>
+                <th>
+                    District
+                </th>
+                <th>
+                    Password
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model.OrderBy(u => u.Id))
+            {
+                <tr>
+                    <td>@obj.Id</td>
+                    <td>@obj.HospitalType</td>
+                    <td>@obj.PrimaryContactName</td>
+                    <td>@obj.PrimaryContactNumber</td>
+                    <td>@obj.AlternateContactNumber</td>
+                    <td>@obj.AlternateContactName</td>
+                    <td>@obj.Email</td>
+                    <td>@obj.Address</td>
+                    <td>@obj.State</td>
+                    <td>@obj.District</td>
+                    <td>@obj.Password</td>
+
+                    <td>
+                        <div class="w-75 btn btn-group" role="group">
+                            <a asp-controller="HospitalRegister" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary mx-2">
+                                <i class="bi bi-pencil-fill"></i>Edit
+                            </a>
+
+                            <a asp-controller="Category" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-outline-danger mx-2">
+                                <i class="bi bi-trash3-fill"></i>Delete
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
