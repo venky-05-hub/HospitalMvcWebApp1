@@ -1,0 +1,55 @@
+﻿ @model List<DoctorsRegistrationModel>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <div class="Container">
+        <div class="row pt-4 pb-3">
+            <div class=" cal-6">
+                <h2 class="text-primary">Category List</h2>
+            </div>
+            <div class=" cal-6 text-end">
+                <a asp-controller="Home" asp-action="Create" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Create New Category</a>
+            </div>
+        </div>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>DId</th>
+                    <th>DoctorsName</th>
+                    <th>Mobile</th>
+                    <th>Specliazation</th>
+                    <th>Degrees</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var obj in Model.OrderBy(u => u.DId))
+                {
+                    <tr>
+                        <td>@obj.DId</td>
+                        <td>@obj.DoctorsName</td>
+                        <td>@obj.MobileNo</td>
+                        <td>@obj.Specialization</td>
+                        <td>@obj.Degrees</td>
+                        <td>
+                            <div class="w-80 btn-group" role="group">
+                                <a asp-controller="Category" asp-action="Edit" asp-route-id="@obj.DId" class="btn btn-primary mx-2">
+                                    <i class="bi bi-pencil-square"></i>Edit
+                                </a>
+                                <a asp-controller="Category" asp-action="Delete" asp-route-id="@obj.DId" class="btn btn-danger mx-2">
+                                    <i class="bi bi-trash"></i>Delete
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
